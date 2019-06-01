@@ -3,22 +3,23 @@
         <body>
             <script>
                    function set_co(){
-                      document.cookie = '{"name":"ankur"}';
+                       var name = "ankur" ;
+                       json = {"name" : name} ;
+                       str = JSON.stringify(json);
+                       document.cookie = str;
                    }
                    function get_co(){
                        cookie = document.cookie;
                        if(cookie.indexOf(':') == -1){
                            console.log("null");
                        }
-                    //    cookie_j = JSON.parse(cookie);
-                    //    keys = Object.keys(cookie_j);
-                       console.log(cookie);
+                      console.log(JSON.parse(cookie));
                    }
                    
                    set_co();
                    get_co();
                 </script>
               
-
+                
         </body>
 </html>
