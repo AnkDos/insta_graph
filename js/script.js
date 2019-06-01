@@ -2,7 +2,9 @@
 function get_access_token(){ 
 
      load_cookie = document.cookie;
-     
+     if(load_cookie.indexOf(':') == -1){
+          load_cookie = null ;
+     }
      if(load_cookie == null){
           url =  window.location.href ;
           if(url.includes('#')){
