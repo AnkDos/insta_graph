@@ -1,0 +1,20 @@
+<html>
+    <head></head>
+        <body>
+            <script>
+                   function set_co(){
+                       document.cookie = '{"name":"ankur"}';
+                   }
+                   function get_co(){
+                       cookie = document.cookie;
+                       cookie_j = JSON.parse(cookie);
+                       console.log(cookie_j.name);
+                   }
+                   
+                   set_co();
+                   get_co();
+                </script>
+              
+
+        </body>
+</html>
