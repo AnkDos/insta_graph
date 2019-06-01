@@ -8,7 +8,7 @@ function get_access_token(){
           split = url.split('#');
           more_split = split[1].split('=') ;
           access_token = more_split[1] ;   
-          document.cookie = '{"at":${access_token} }';
+          document.cookie = '{"at": `${access_token}` }';
           console.log(access_token);
           return access_token ;
       }
