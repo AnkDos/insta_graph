@@ -35,7 +35,10 @@ function get_access_token(){
 function create_graph(){
     
       access_token = get_access_token();
-     
+      if(access_token == null ){
+          document.getElementById("loader").hidden = false ;
+          document.getElementById("graph").hidden = true ;
+           }
 
  
           new Chart(document.getElementById("canvas"), {
