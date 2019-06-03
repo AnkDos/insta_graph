@@ -38,6 +38,7 @@ function create_graph(){
       if(access_token == null ){
           document.getElementById("loader").hidden = false ;
           document.getElementById("graph").hidden = true ;
+          document.getElementById("btn").hidden = false ;
            }
 
  
