@@ -106,7 +106,7 @@ function create_graph(){
     
             if (request.status >= 200 && request.status < 400) {
               // callback(data.data[0].values[0].value);    
-              console.log('data') ;  
+              console.log(data) ;  
             }
              
             else {
