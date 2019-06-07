@@ -1,8 +1,3 @@
-
-
-
-
-
 function get_access_token(){ 
 
      load_cookie = document.cookie;
@@ -32,6 +27,68 @@ function get_access_token(){
      
 }
 
+function graph(dataset,filters){
+  new Chart(document.getElementById("canvas"), {
+    type: 'line',
+    data: {
+      labels: filters,
+      datasets: [{ 
+          data: dataset,
+          label: "Africa",
+          borderColor: "#3e95cd",
+          fill: false
+        }
+      ]
+    },
+    options: {
+       responsive: true,
+      title: {
+
+        display: true,
+        text: 'World population per region (in millions)'
+      }
+    }
+  });
+}
+
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+  function if_exists(ele,ar){
+     exists = false ;
+     for(items in ar){
+       if(ele == items){
+         exists = true;
+         break ;
+       }
+
+     } 
+     return exists ;
+  }
+    
+    function create_rand_color(length,ar){
+         rand_color = getRandomColor() ;
+      if(length > 1){   
+         if(if_exists(rand_color,ar) == false ){
+            colors.push(rand_color) ;
+            create_rand_color(length-1 , ar) ;
+         }else{
+           create_rand_color(length,ar) ;
+         }
+      }
+      return ar ;
+    }
+
+
+
+
 function create_graph(){
     
       access_token = get_access_token();
@@ -39,30 +96,37 @@ function create_graph(){
           document.getElementById("loader").hidden = false ;
           document.getElementById("graph").hidden = true ;
           document.getElementById("btn").hidden = false ;
+           }else{
+           
+         
+            var request = new XMLHttpRequest();
+            request.open('GET',"https://api.instagram.com/v1/users/self/media/recent/?access_token="+access_token,true) ;
+            request.onload = function() {
+            var data = JSON.parse(this.response)
+    
+            if (request.status >= 200 && request.status < 400) {
+              // callback(data.data[0].values[0].value);    
+              console.log('data') ;  
+            }
+             
+            else {
+             console.log('error') ;
+              }
+            }
+    
+            request.send()
+       
+    
+
+
+
+
            }
 
- 
-          new Chart(document.getElementById("canvas"), {
-               type: 'line',
-               data: {
-                 labels: ['filter1','filter2' , 'filter3','filter4'],
-                 datasets: [{ 
-                     data: [100,120,110,125],
-                     label: "Africa",
-                     borderColor: "#3e95cd",
-                     fill: false
-                   }
-                 ]
-               },
-               options: {
-                  responsive: true,
-                 title: {
-
-                   display: true,
-                   text: 'World population per region (in millions)'
-                 }
-               }
-             });
+          
+      
+      
+          
 
 
       }
