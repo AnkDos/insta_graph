@@ -34,7 +34,7 @@ function graph(dataset,filters){
       labels: filters,
       datasets: [{ 
           data: dataset,
-          label: "Africa",
+          label: "likes",
           borderColor: "#3e95cd",
           fill: false
         }
@@ -103,10 +103,17 @@ function create_graph(){
             request.open('GET',"https://api.instagram.com/v1/users/self/media/recent/?access_token="+access_token,true) ;
             request.onload = function() {
             var data = JSON.parse(this.response)
-    
+            var i = 0 ;
+            var likes = [] ;
+            var filters = [] ;  
             if (request.status >= 200 && request.status < 400) {
               // callback(data.data[0].values[0].value);    
-              console.log(data) ;  
+              while(i<15){
+                likes[i] = data.data[i].likes.count;
+                filters[i] = data.data[i].filter;
+                i+=1 ;
+              }
+              graph(likes,filters);
             }
              
             else {
